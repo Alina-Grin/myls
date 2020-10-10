@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 13:15:55 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/07 16:50:32 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/10 14:58:41 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void		args_bolter(int ac, char **av, int *real_args, t_list **file_list)
 			// ft_lstntail(file_list, tmp, sizeof(t_file));
 			ft_lstappend(file_list, ft_lstnew(tmp, sizeof(t_file)));
 			(*real_args)++;
-			free(tmp->name);
 		}
 	}
 	free(tmp);

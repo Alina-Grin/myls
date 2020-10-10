@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 11:29:24 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/07 16:50:40 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/10 14:58:34 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ void		read_dir(char *name, t_flags *flags)
 			// ft_lstntail(&entry, current, sizeof(t_file));
 			ft_lstappend(&entry, ft_lstnew(current, sizeof(t_file)));
 			free(abspath);
-			free(current->name);
 		}
 	}
 	print_dir(entry, flags, name);
