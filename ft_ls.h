@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 18:04:18 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/11 13:33:13 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/11 16:30:56 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void				print_user_group(struct stat filestat, int w1, int w2);
 void				display_full(t_list *file_list, t_flags *flags, char *name,
 								int *w);
 void				read_dir(char *name, t_flags *flags);
-void				print_dir(t_list *entry, t_flags *flags, char *name);
+void				print_dir(t_list **entry, t_flags *flags, char *name);
 void				print_error(char *name);
 void				print_top(char	*abspath);
 void				simple_print(char *str);

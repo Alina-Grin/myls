@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 11:29:24 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/11 13:32:26 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/11 16:30:38 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ static int	is_dir(const char *path)
 	return (((statbuf.st_mode & S_IFMT) == S_IFDIR));
 }
 
-void		print_dir(t_list *entry, t_flags *flags, char *pname)
+void		print_dir(t_list **entry, t_flags *flags, char *pname)
 {
 	t_list	*tmp;
 	int		w[4];
 
-	tmp = entry;
-	sort_list(tmp, flags);
+	sort_list(*entry, flags);
 	if (flags->r)
-		ft_lstrev(&tmp);
+		ft_lstrev(entry);
+	tmp = *entry;
 	if (flags->l)
 	{
 		print_blocks(tmp);
@@ -116,7 +116,7 @@ void		read_dir(char *name, t_flags *flags)
 			ft_lstappend(&entry, ft_lstnew(current, sizeof(t_file)));
 		}
 	}
-	print_dir(entry, flags, name);
+	print_dir(&entry, flags, name);
 	free_entry(entry);
 	closedir(dir);
 	rec_subdir(name, flags);
