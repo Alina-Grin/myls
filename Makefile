@@ -6,7 +6,7 @@
 #    By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/06 14:39:50 by szeftyr           #+#    #+#              #
-#    Updated: 2020/10/11 13:33:44 by szeftyr          ###   ########.fr        #
+#    Updated: 2020/10/11 18:50:59 by szeftyr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(DIR):
 	# cd libft && $(MAKE)
 	make -C libft
 
-%.o: %.c
+%.o: %.c ft_ls.h
 	$(CC) -c $(CFLAGS) $<
 
 .PHONY: clean
