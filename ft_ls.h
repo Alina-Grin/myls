@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 18:04:18 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/06 14:06:00 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/11 13:33:13 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void				read_dir(char *name, t_flags *flags);
 void				print_dir(t_list *entry, t_flags *flags, char *name);
 void				print_error(char *name);
 void				print_top(char	*abspath);
+void				simple_print(char *str);
 void				ft_get_maxwidth(t_list **begin, int *w);
+void				get_stat(char *dirname, char *name, t_file *current);
 
 #endif

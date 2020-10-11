@@ -6,27 +6,11 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 11:29:24 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/10 14:58:34 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/11 13:32:26 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-
-char		*ft_path_join(const char *path, const char *file_name)
-{
-	char	*abspath;
-	size_t	path_len;
-
-	path_len = ft_strlen(path);
-	abspath = ft_strnew(path_len + ft_strlen(file_name) + 1);
-	if (abspath == NULL)
-		return (NULL);
-	ft_strcpy(abspath, path);
-	if (path_len > 0 && abspath[path_len - 1] != '/')
-		abspath[path_len++] = '/';
-	ft_strcat(abspath, file_name);
-	return (abspath);
-}
 
 static int	is_dir(const char *path)
 {
@@ -49,7 +33,7 @@ void		print_dir(t_list *entry, t_flags *flags, char *pname)
 	if (flags->l)
 	{
 		print_blocks(tmp);
-		ft_get_maxwidth(&entry, w);
+		ft_get_maxwidth(&tmp, w);
 		while (tmp)
 		{
 			display_full(tmp, flags, pname, w);
@@ -60,7 +44,7 @@ void		print_dir(t_list *entry, t_flags *flags, char *pname)
 	{
 		while (tmp)
 		{
-			ft_putstr(ft_strjoin(((t_file *)tmp->content)->name, "\n"));
+			simple_print(((t_file *)tmp->content)->name);
 			tmp = tmp->next;
 		}
 	}
@@ -94,15 +78,32 @@ void		rec_subdir(char *name, t_flags *flags)
 	closedir(dir);
 }
 
+static void	free_entry(t_list *entry)
+{
+	t_list	*tmp;
+	t_file	*tempos;
+
+	while (entry != 0)
+	{
+		tmp = entry;
+		entry = entry->next;
+		if (tmp->content != 0)
+		{
+			tempos = (t_file *)tmp->content;
+			free(tempos->name);
+			free(tempos);
+		}
+		free(tmp);
+	}
+}
+
 void		read_dir(char *name, t_flags *flags)
 {
 	DIR				*dir;
 	struct dirent	*pdir;
 	t_list			*entry;
 	t_file			*current;
-	char			*abspath;
 
-	abspath = NULL;
 	entry = NULL;
 	current = (t_file *)ft_memalloc(sizeof(t_file));
 	if (!(dir = opendir(name)))
@@ -111,15 +112,12 @@ void		read_dir(char *name, t_flags *flags)
 	{
 		if (flags->a || pdir->d_name[0] != '.')
 		{
-			current->name = ft_strdup(pdir->d_name);
-			abspath = ft_path_join(name, current->name);
-			lstat(abspath, &current->st);
-			// ft_lstntail(&entry, current, sizeof(t_file));
+			get_stat(pdir->d_name, name, current);
 			ft_lstappend(&entry, ft_lstnew(current, sizeof(t_file)));
-			free(abspath);
 		}
 	}
 	print_dir(entry, flags, name);
+	free_entry(entry);
 	closedir(dir);
 	rec_subdir(name, flags);
 	free(current);

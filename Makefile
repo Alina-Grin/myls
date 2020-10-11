@@ -6,16 +6,16 @@
 #    By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/06 14:39:50 by szeftyr           #+#    #+#              #
-#    Updated: 2020/10/06 16:07:11 by szeftyr          ###   ########.fr        #
+#    Updated: 2020/10/11 13:33:44 by szeftyr          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 SRCS = dirs.c flags.c ft_ls.c full_print.c print.c \
-	   secondary.c sort_by_time.c sort.c
+	   secondary.c sort_by_time.c sort.c get_stat.c
 
 DIR = libft/libft.a
 
@@ -45,9 +45,6 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	make -C libft/ fclean
-
-# $(DIR):
-# 	make -C libft
 
 .PHONY: re
 re: fclean all

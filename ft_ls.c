@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/03 17:46:55 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/06 13:37:03 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/11 10:46:54 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,9 @@ int		main(int argc, char **argv)
 	file_list = create_file_list(argc, argv, flags);
 	list_len = ft_lstlen(file_list);
 	processor(file_list, flags, list_len);
-	ft_lstdel(&file_list, &ft_lstfree);
+	free(((t_file *)file_list->content)->name);
+	free(file_list->content);
+	free(file_list);
 	free(flags);
 	return (0);
 }

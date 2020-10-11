@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/31 22:06:52 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/07 13:47:51 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/11 10:47:24 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	print_lorn(t_list *file_list, char *parent)
 			ft_putstr(buf);
 		}
 	}
-	free (abspath);
+	free(abspath);
 }
 
 void		print_blocks(t_list *file_list)
@@ -89,7 +89,7 @@ void		print_xattr(t_list *file_list, char *parent)
 	else
 		ft_putstr(" ");
 	ft_putstr(" ");
-	free (abspath);
+	free(abspath);
 }
 
 void		display_full(t_list *file_list, t_flags *flags, char *name, int *w)

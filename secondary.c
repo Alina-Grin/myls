@@ -6,11 +6,27 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/01 15:34:12 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/10 15:04:29 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/11 11:45:36 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+char	*ft_path_join(const char *path, const char *file_name)
+{
+	char	*abspath;
+	size_t	path_len;
+
+	path_len = ft_strlen(path);
+	abspath = ft_strnew(path_len + ft_strlen(file_name) + 1);
+	if (abspath == NULL)
+		return (NULL);
+	ft_strcpy(abspath, path);
+	if (path_len > 0 && abspath[path_len - 1] != '/')
+		abspath[path_len++] = '/';
+	ft_strcat(abspath, file_name);
+	return (abspath);
+}
 
 void	print_error(char *name)
 {
@@ -20,6 +36,7 @@ void	print_error(char *name)
 	ft_putstr(str);
 	ft_putstr(strerror(errno));
 	ft_putstr("\n");
+	free(str);
 	return ;
 }
 
@@ -29,7 +46,17 @@ void	print_top(char *abspath)
 
 	str = ft_strjoin("\n", abspath);
 	ft_putstr(str);
+	free(str);
 	ft_putstr(":\n");
+}
+
+void	simple_print(char *str)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(str, "\n");
+	ft_putstr(tmp);
+	free(tmp);
 }
 
 void	ft_get_maxwidth(t_list **begin, int *w)
