@@ -116,7 +116,8 @@ void		read_dir(char *name, t_flags *flags)
 			ft_lstappend(&entry, ft_lstnew(current, sizeof(t_file)));
 		}
 	}
-	print_dir(&entry, flags, name);
+	if (entry)
+		print_dir(&entry, flags, name);
 	free_entry(entry);
 	closedir(dir);
 	rec_subdir(name, flags);
