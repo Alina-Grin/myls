@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/04 11:29:24 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/11 16:30:38 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/13 11:41:51 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ void		read_dir(char *name, t_flags *flags)
 	t_file			*current;
 
 	entry = NULL;
-	current = (t_file *)ft_memalloc(sizeof(t_file));
 	if (!(dir = opendir(name)))
 		return (print_error(name));
+	current = (t_file *)ft_memalloc(sizeof(t_file));
 	while ((pdir = readdir(dir)) != NULL)
 	{
 		if (flags->a || pdir->d_name[0] != '.')

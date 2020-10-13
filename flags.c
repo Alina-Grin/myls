@@ -6,7 +6,7 @@
 /*   By: szeftyr <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/24 13:15:55 by szeftyr           #+#    #+#             */
-/*   Updated: 2020/10/11 10:51:03 by szeftyr          ###   ########.fr       */
+/*   Updated: 2020/10/13 11:39:54 by szeftyr          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,8 @@ void		args_bolter(int ac, char **av, int *real_args, t_list **file_list)
 	{
 		if (av[i][0] != '-' && lstat(av[i], &tbuf) == -1)
 		{
-			ft_putstr(ft_strjoin("ft_ls: ", av[i]));
-			ft_putstr(ft_strjoin(": ", strerror(errno)));
-			ft_putstr("\n");
+			ft_putstr("ft_ls: ");
+			print_error(av[i]);
 			(*real_args)--;
 		}
 		else if (av[i][0] != '-' && !ft_strequ(av[i], "./ft_ls"))
