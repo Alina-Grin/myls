@@ -40,7 +40,7 @@ void	print_permissions(mode_t mode)
 	ft_putchar((mode & S_IROTH) ? 'r' : '-');
 	ft_putchar((mode & S_IWOTH) ? 'w' : '-');
 	if (mode & S_ISVTX)
-		ft_putchar((mode & S_IXUSR) ? 't' : 'T');
+		ft_putchar((mode & S_IXOTH) ? 't' : 'T');
 	else
 		ft_putchar((mode & S_IXOTH) ? 'x' : '-');
 }
